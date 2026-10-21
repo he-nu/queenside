@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# setup.sh — bring a tree of queen_build (source clone or release copy) to a
+# setup.sh — bring a tree of queenside (source clone or release copy) to a
 # runnable state in one step.
 #
 # Usage (from the project root):
@@ -165,7 +165,7 @@ if [ "$WITH_MODEL" -eq 1 ]; then
   fi
 
   if [ ! -d "$MODEL_DIR" ] || [ ! -f "$MODEL_DIR/release.json" ]; then
-    TMP="$(mktemp -d "${TMPDIR:-/tmp}/queen_build-setup.XXXXXX")"
+    TMP="$(mktemp -d "${TMPDIR:-/tmp}/queenside-setup.XXXXXX")"
     trap 'rm -rf "$TMP"' EXIT
     if [ "$VIA" = "auto" ]; then
       VIA="$(git lfs version >/dev/null 2>&1 && echo git || echo hf)"
