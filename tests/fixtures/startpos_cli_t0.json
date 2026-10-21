@@ -1,0 +1,143 @@
+INFO 10-17 21:10:44 [api_utils.py:273] non-default args: {'dtype': 'bfloat16', 'seed': 20260823, 'max_model_len': 2304, 'enable_prefix_caching': False, 'gpu_memory_utilization': 0.25, 'max_num_seqs': 32, 'disable_log_stats': True, 'enforce_eager': True, 'model': '/home/user/persistent/highly_experimental/queen_build/queen_pawn-8'}
+WARNING 10-17 21:10:44 [arg_utils.py:1678] The global random seed is set to 20260823. Since VLLM_ENABLE_V1_MULTIPROCESSING is set to False, this may affect the random state of the Python process that launched vLLM.
+INFO 10-17 21:10:44 [model.py:645] Resolved architecture: SmolLM3ForCausalLM
+INFO 10-17 21:10:44 [model.py:1883] Using max model len 2304
+INFO 10-17 21:10:44 [scheduler.py:242] Chunked prefill is enabled with max_num_batched_tokens=8192.
+WARNING 10-17 21:10:44 [vllm.py:1194] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+WARNING 10-17 21:10:44 [vllm.py:1247] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+INFO 10-17 21:10:44 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+INFO 10-17 21:10:44 [vllm.py:1426] Cudagraph is disabled under eager mode
+INFO 10-17 21:10:44 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+INFO 10-17 21:10:48 [core.py:121] Initializing a V1 LLM engine (v0.27.1) with config: model='/home/user/persistent/highly_experimental/queen_build/queen_pawn-8', speculative_config=None, tokenizer='/home/user/persistent/highly_experimental/queen_build/queen_pawn-8', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2304, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=20260823, served_model_name=/home/user/persistent/highly_experimental/queen_build/queen_pawn-8, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+INFO 10-17 21:10:48 [parallel_state.py:1640] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.4:33775 backend=nccl
+INFO 10-17 21:10:48 [parallel_state.py:1977] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+INFO 10-17 21:10:49 [topk_topp_sampler.py:46] FlashInfer top-p/top-k sampling disabled via VLLM_USE_FLASHINFER_SAMPLER=0.
+INFO 10-17 21:10:49 [gpu_model_runner.py:5308] Starting to load model /home/user/persistent/highly_experimental/queen_build/queen_pawn-8...
+INFO 10-17 21:10:49 [base.py:105] Using Transformers modeling backend.
+INFO 10-17 21:10:50 [base.py:508] Fused: q_proj + k_proj + v_proj (self_attn: SmolLM3Attention) -> qkv_proj (QKVParallelLinear)
+INFO 10-17 21:10:50 [base.py:508] Fused: gate_proj + up_proj (mlp: SmolLM3MLP) -> gate_up_proj (MergedColumnParallelLinear)
+INFO 10-17 21:10:50 [base.py:508] Fused: input_layernorm (SmolLM3RMSNorm) -> RMSNorm (CustomOp)
+INFO 10-17 21:10:50 [base.py:508] Fused: post_attention_layernorm (SmolLM3RMSNorm) -> RMSNorm (CustomOp)
+INFO 10-17 21:10:53 [base.py:508] Fused: norm (SmolLM3RMSNorm) -> RMSNorm (CustomOp)
+INFO 10-17 21:10:54 [cuda.py:482] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+INFO 10-17 21:10:54 [flash_attn.py:789] Using FlashAttention version 2
+INFO 10-17 21:10:59 [weight_utils.py:867] Filesystem type for checkpoints: EXT4. Checkpoint size: 5.73 GiB. Available RAM: 1.41 GiB.
+INFO 10-17 21:10:59 [weight_utils.py:897] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre) and the checkpoint size (5.73 GiB) exceeds 90% of available RAM (1.41 GiB).
+INFO 10-17 21:11:01 [default_loader.py:430] Loading weights took 1.69 seconds
+INFO 10-17 21:11:02 [gpu_model_runner.py:5405] Model loading took 6.89 GiB memory and 11.769968 seconds
+INFO 10-17 21:11:04 [gpu_worker.py:563] Available KV cache memory: 4.09 GiB
+INFO 10-17 21:11:04 [kv_cache_utils.py:2235] GPU KV cache size: 59,600 tokens
+INFO 10-17 21:11:04 [kv_cache_utils.py:2236] Maximum concurrency for 2,304 tokens per request: 25.87x
+INFO 10-17 21:11:05 [gpu_worker.py:789] Free memory on device (47.14/47.4 GiB) on startup. Desired GPU memory utilization is (0.25, 11.85 GiB). Actual usage is 7.14 GiB for consumed memory (weights + non-torch), 0.62 GiB for peak activation, and 0.0 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=4237324288` (3.95 GiB) to fit into requested memory, or `--kv-cache-memory=42127568896` (39.23 GiB) to fully utilize gpu memory. Current kv cache memory in use is 4.09 GiB.
+INFO 10-17 21:11:06 [jit_monitor.py:79] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+INFO 10-17 21:11:06 [core.py:355] init engine (profile, create kv cache, warmup model) took 4.33 s
+INFO 10-17 21:11:07 [hf.py:540] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+WARNING 10-17 21:11:09 [input_processor.py:243] VLLM_DISABLE_REQUEST_ID_RANDOMIZATION is set and will be removed in a future release. Duplicate externally-provided request IDs may cause failures and/or subtle correctness errors.
+WARNING 10-17 21:11:09 [jit_monitor.py:135] Triton kernel JIT compilation during inference: _bmm_outer_product_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+{
+  "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+  "text": "ANALYSIS:\nThe position arises after 1.e4 e5 2.d4, a symmetrical Queen's Pawn structure. The player has a white pawn on e4 and the opponent has a black pawn on d7. The central tension between e4 and d7 is the defining feature, and the player must decide how to proceed with development and central play.\n\nThe best move is 3...white pawn d2-d4, immediately challenging the center and establishing a solid pawn duo on d4 and e4. This is the most direct and principled approach, seizing the initiative in the center before the opponent can complete development. After the opponent's most natural reply 4.black knight g8-f6, developing the king's knight to its natural square where it controls e4 and prepares to support a central break, the player should continue with 4...white knight g1-f3, developing the king's knight to support the center. The opponent then plays 5.black pawn d7-d6, a solid and flexible choice that prepares ...black pawn e7-e5 while keeping the center intact. The player should continue with 5...white pawn e2-e3, preparing to develop the white bishop to d3 and supporting the center. The opponent develops with 6.black pawn e7-e6, and the player follows with 6...white bishop f1-d3. After 7.black bishop f8-e7 white king e1-g1 8.black king e8-g8 white knight b1-c3 9.black knight b8-c6, the position is balanced: the player has a solid structure with no structural weakness, while the opponent has adequate counterplay and can later challenge the center with ...black pawn d6-d5. The player retains a small edge from the initiative and the more active white bishop on d3.\n\nThe alternative 3...white knight g1-f3 is also sound, developing the king's knight to support the center. After 4.black knight g8-f6 white pawn d2-d4 5.black pawn d7-d6 white pawn e2-e3 6.black pawn e7-e6 white bishop f1-d3 7.black bishop f8-e7 white king e1-g1 8.black king e8-g8 white knight b1-c3 9.black knight b8-c6, the position is balanced with the player retaining a modest space advantage. This is slightly less direct than 3...d5 because the player delays the central challenge by one tempo.\n\nThe move 3...white pawn e2-e3 is the least effective of the three candidates. It is a passive move that does not challenge the center and allows the opponent to develop freely. After 4.black knight g8-f6 white knight g1-f3 5.black pawn d7-d5 white pawn d2-d4 6.black pawn e7-e6 white bishop f1-d3 7.black bishop f8-e7 white king e1-g1 8.black king e8-g8 white knight b1-c3 9.black knight b8-c6, the position is balanced but the player has surrendered the initiative in the center and the opponent has a solid structure with no weaknesses.\n\nBEST_MOVE: white pawn d2-d4\nCRITICAL_LINE: white pawn d2-d4 black knight g8-f6 white knight g1-f3 black pawn d7-d6 white pawn e2-e3 black pawn e7-e6 white bishop f1-d3 black bishop f8-e7 white king e1-g1 black king e8-g8 white knight b1-c3 black knight b8-c6\nPROMISING_MOVES: white pawn d2-d4 white knight g1-f3 white pawn e2-e3\nEVALUATION: the player holds a small advantage of approximately +0.20 pawns from the initiative and the more active white bishop on d3 after best play.",
+  "raw_text": "ANALYSIS:\nThe position arises after 1.e4 e5 2.d4, a symmetrical Queen's Pawn structure. The player has a <PIECE_MP> on <SQUARE_29> and the opponent has a <PIECE_OP> on <SQUARE_52>. The central tension between <SQUARE_29> and <SQUARE_52> is the defining feature, and the player must decide how to proceed with development and central play.\n\nThe best move is 3...<PIECE_MP><SQUARE_12><SQUARE_28>, immediately challenging the center and establishing a solid pawn duo on <SQUARE_28> and <SQUARE_29>. This is the most direct and principled approach, seizing the initiative in the center before the opponent can complete development. After the opponent's most natural reply 4.<PIECE_ON><SQUARE_63><SQUARE_46>, developing the king's knight to its natural square where it controls <SQUARE_29> and prepares to support a central break, the player should continue with 4...<PIECE_MN><SQUARE_7><SQUARE_22>, developing the king's knight to support the center. The opponent then plays 5.<PIECE_OP><SQUARE_52><SQUARE_44>, a solid and flexible choice that prepares ...<PIECE_OP><SQUARE_53><SQUARE_37> while keeping the center intact. The player should continue with 5...<PIECE_MP><SQUARE_13><SQUARE_21>, preparing to develop the <PIECE_MB> to <SQUARE_20> and supporting the center. The opponent develops with 6.<PIECE_OP><SQUARE_53><SQUARE_45>, and the player follows with 6...<PIECE_MB><SQUARE_6><SQUARE_20>. After 7.<PIECE_OB><SQUARE_62><SQUARE_53> <PIECE_MK><SQUARE_5><SQUARE_7> 8.<PIECE_OK><SQUARE_61><SQUARE_63> <PIECE_MN><SQUARE_2><SQUARE_19> 9.<PIECE_ON><SQUARE_58><SQUARE_43>, the position is balanced: the player has a solid structure with no structural weakness, while the opponent has adequate counterplay and can later challenge the center with ...<PIECE_OP><SQUARE_44><SQUARE_36>. The player retains a small edge from the initiative and the more active <PIECE_MB> on <SQUARE_20>.\n\nThe alternative 3...<PIECE_MN><SQUARE_7><SQUARE_22> is also sound, developing the king's knight to support the center. After 4.<PIECE_ON><SQUARE_63><SQUARE_46> <PIECE_MP><SQUARE_12><SQUARE_28> 5.<PIECE_OP><SQUARE_52><SQUARE_44> <PIECE_MP><SQUARE_13><SQUARE_21> 6.<PIECE_OP><SQUARE_53><SQUARE_45> <PIECE_MB><SQUARE_6><SQUARE_20> 7.<PIECE_OB><SQUARE_62><SQUARE_53> <PIECE_MK><SQUARE_5><SQUARE_7> 8.<PIECE_OK><SQUARE_61><SQUARE_63> <PIECE_MN><SQUARE_2><SQUARE_19> 9.<PIECE_ON><SQUARE_58><SQUARE_43>, the position is balanced with the player retaining a modest space advantage. This is slightly less direct than 3...d5 because the player delays the central challenge by one tempo.\n\nThe move 3...<PIECE_MP><SQUARE_13><SQUARE_21> is the least effective of the three candidates. It is a passive move that does not challenge the center and allows the opponent to develop freely. After 4.<PIECE_ON><SQUARE_63><SQUARE_46> <PIECE_MN><SQUARE_7><SQUARE_22> 5.<PIECE_OP><SQUARE_52><SQUARE_36> <PIECE_MP><SQUARE_12><SQUARE_28> 6.<PIECE_OP><SQUARE_53><SQUARE_45> <PIECE_MB><SQUARE_6><SQUARE_20> 7.<PIECE_OB><SQUARE_62><SQUARE_53> <PIECE_MK><SQUARE_5><SQUARE_7> 8.<PIECE_OK><SQUARE_61><SQUARE_63> <PIECE_MN><SQUARE_2><SQUARE_19> 9.<PIECE_ON><SQUARE_58><SQUARE_43>, the position is balanced but the player has surrendered the initiative in the center and the opponent has a solid structure with no weaknesses.\n\nBEST_MOVE: <PIECE_MP><SQUARE_12><SQUARE_28>\nCRITICAL_LINE: <PIECE_MP><SQUARE_12><SQUARE_28> <PIECE_ON><SQUARE_63><SQUARE_46> <PIECE_MN><SQUARE_7><SQUARE_22> <PIECE_OP><SQUARE_52><SQUARE_44> <PIECE_MP><SQUARE_13><SQUARE_21> <PIECE_OP><SQUARE_53><SQUARE_45> <PIECE_MB><SQUARE_6><SQUARE_20> <PIECE_OB><SQUARE_62><SQUARE_53> <PIECE_MK><SQUARE_5><SQUARE_7> <PIECE_OK><SQUARE_61><SQUARE_63> <PIECE_MN><SQUARE_2><SQUARE_19> <PIECE_ON><SQUARE_58><SQUARE_43>\nPROMISING_MOVES: <PIECE_MP><SQUARE_12><SQUARE_28> <PIECE_MN><SQUARE_7><SQUARE_22> <PIECE_MP><SQUARE_13><SQUARE_21>\nEVALUATION: the player holds a small advantage of approximately +0.20 pawns from the initiative and the more active <PIECE_MB> on <SQUARE_20> after best play.",
+  "best_move_uci": "d2d4",
+  "move_source": "best_move",
+  "critical_line": {
+    "line": "<PIECE_MP><SQUARE_12><SQUARE_28> <PIECE_ON><SQUARE_63><SQUARE_46> <PIECE_MN><SQUARE_7><SQUARE_22> <PIECE_OP><SQUARE_52><SQUARE_44> <PIECE_MP><SQUARE_13><SQUARE_21> <PIECE_OP><SQUARE_53><SQUARE_45> <PIECE_MB><SQUARE_6><SQUARE_20> <PIECE_OB><SQUARE_62><SQUARE_53> <PIECE_MK><SQUARE_5><SQUARE_7> <PIECE_OK><SQUARE_61><SQUARE_63> <PIECE_MN><SQUARE_2><SQUARE_19> <PIECE_ON><SQUARE_58><SQUARE_43>",
+    "parsed_move_count": 12,
+    "legal_steps": [
+      {
+        "ply": 1,
+        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "uci": "d2d4",
+        "token_text": "<PIECE_MP><SQUARE_12><SQUARE_28>"
+      },
+      {
+        "ply": 2,
+        "fen": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1",
+        "uci": "g8f6",
+        "token_text": "<PIECE_ON><SQUARE_63><SQUARE_46>"
+      },
+      {
+        "ply": 3,
+        "fen": "rnbqkb1r/pppppppp/5n2/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 1 2",
+        "uci": "g1f3",
+        "token_text": "<PIECE_MN><SQUARE_7><SQUARE_22>"
+      },
+      {
+        "ply": 4,
+        "fen": "rnbqkb1r/pppppppp/5n2/8/3P4/5N2/PPP1PPPP/RNBQKB1R b KQkq - 2 2",
+        "uci": "d7d6",
+        "token_text": "<PIECE_OP><SQUARE_52><SQUARE_44>"
+      },
+      {
+        "ply": 5,
+        "fen": "rnbqkb1r/ppp1pppp/3p1n2/8/3P4/5N2/PPP1PPPP/RNBQKB1R w KQkq - 0 3",
+        "uci": "e2e3",
+        "token_text": "<PIECE_MP><SQUARE_13><SQUARE_21>"
+      },
+      {
+        "ply": 6,
+        "fen": "rnbqkb1r/ppp1pppp/3p1n2/8/3P4/4PN2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+        "uci": "e7e6",
+        "token_text": "<PIECE_OP><SQUARE_53><SQUARE_45>"
+      },
+      {
+        "ply": 7,
+        "fen": "rnbqkb1r/ppp2ppp/3ppn2/8/3P4/4PN2/PPP2PPP/RNBQKB1R w KQkq - 0 4",
+        "uci": "f1d3",
+        "token_text": "<PIECE_MB><SQUARE_6><SQUARE_20>"
+      },
+      {
+        "ply": 8,
+        "fen": "rnbqkb1r/ppp2ppp/3ppn2/8/3P4/3BPN2/PPP2PPP/RNBQK2R b KQkq - 1 4",
+        "uci": "f8e7",
+        "token_text": "<PIECE_OB><SQUARE_62><SQUARE_53>"
+      },
+      {
+        "ply": 9,
+        "fen": "rnbqk2r/ppp1bppp/3ppn2/8/3P4/3BPN2/PPP2PPP/RNBQK2R w KQkq - 2 5",
+        "uci": "e1g1",
+        "token_text": "<PIECE_MK><SQUARE_5><SQUARE_7>"
+      },
+      {
+        "ply": 10,
+        "fen": "rnbqk2r/ppp1bppp/3ppn2/8/3P4/3BPN2/PPP2PPP/RNBQ1RK1 b kq - 3 5",
+        "uci": "e8g8",
+        "token_text": "<PIECE_OK><SQUARE_61><SQUARE_63>"
+      },
+      {
+        "ply": 11,
+        "fen": "rnbq1rk1/ppp1bppp/3ppn2/8/3P4/3BPN2/PPP2PPP/RNBQ1RK1 w - - 4 6",
+        "uci": "b1c3",
+        "token_text": "<PIECE_MN><SQUARE_2><SQUARE_19>"
+      },
+      {
+        "ply": 12,
+        "fen": "rnbq1rk1/ppp1bppp/3ppn2/8/3P4/2NBPN2/PPP2PPP/R1BQ1RK1 b - - 5 6",
+        "uci": "b8c6",
+        "token_text": "<PIECE_ON><SQUARE_58><SQUARE_43>"
+      }
+    ],
+    "illegal_at": null,
+    "terminal": false
+  },
+  "inference_settings": {
+    "prompt": "Analyze the position carefully and find the best move for player.",
+    "temperature": 0.0,
+    "top_k": 20,
+    "top_p": 0.95,
+    "max_tokens": 2048,
+    "repetition_penalty": 1.0,
+    "seed": 20260823,
+    "game_id": 0,
+    "request_seed": 917225541,
+    "dtype": "bfloat16",
+    "gpu_memory_utilization": 0.25,
+    "max_model_len": 2304,
+    "max_num_seqs": 32,
+    "runner": "V1",
+    "enable_prefix_caching": false,
+    "enforce_eager": true
+  },
+  "finish_reason": "stop",
+  "generated_tokens": 692
+}

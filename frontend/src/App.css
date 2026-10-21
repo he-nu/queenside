@@ -1,0 +1,580 @@
+.app {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 16px;
+}
+
+.board-wrap {
+  position: relative;
+  width: min(88vmin, 640px);
+}
+
+.board-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.55);
+  z-index: 10;
+}
+
+.board-overlay.over span {
+  color: #f2f3f7;
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.promotion-panel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #262931;
+  border: 1px solid #3a3e49;
+  border-radius: 10px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  color: #e6e8ef;
+}
+
+.promotion-panel span {
+  font-weight: 600;
+}
+
+.promotion-panel button {
+  width: 52px;
+  height: 52px;
+  font-size: 40px;
+  line-height: 1;
+  border: 1px solid #4a4f5c;
+  border-radius: 8px;
+  background: #333743;
+  color: #f2f3f7;
+  cursor: pointer;
+}
+
+.promotion-panel button:hover {
+  background: #42475a;
+}
+
+.promotion-panel button.cancel {
+  font-size: 20px;
+  color: #9aa0b0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 340px;
+}
+
+.status {
+  font-size: 16px;
+  font-weight: 600;
+  background: #21242c;
+  border: 1px solid #32363f;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  flex: 1;
+  padding: 6px 4px;
+  font-size: 15px;
+  border: 1px solid #3a3e49;
+  border-radius: 8px;
+  background: #21242c;
+  color: #dcdee6;
+  cursor: pointer;
+}
+
+.controls button:hover:not(:disabled) {
+  background: #2e323e;
+}
+
+.controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Move list (M7 UI): one row per full move — n. | white | black.
+   Hierarchy: big bright mainline move > small dim variation line >
+   faint tiny turn number. */
+.movelist {
+  display: block;
+  margin: 0;
+  padding: 6px 8px;
+  background: #21242c;
+  border: 1px solid #32363f;
+  border-radius: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.move-row {
+  display: grid;
+  /* Fixed 40 px eval columns: presence/size of one eval must never shift
+     the other side's move. */
+  grid-template-columns: 2.2em minmax(0, 1fr) 40px minmax(0, 1fr) 40px;
+  align-items: start;
+  gap: 0 6px;
+  padding: 1px 0;
+}
+
+/* Turn number: conservatively small and faint. */
+.row-num {
+  font-size: 12px;
+  font-weight: 400;
+  color: #626878;
+  text-align: right;
+  padding-top: 5px;
+}
+
+.move-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.movelist button {
+  padding: 3px 7px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: #e6e8ef;
+  cursor: pointer;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.movelist button:hover {
+  background: #2e323e;
+}
+
+.movelist button.active {
+  background: #3d4456;
+}
+
+/* A side branch: a dim, smaller line nested under the move it answers. */
+.variation-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1px 3px;
+  border-left: 2px solid #383d4a;
+  padding-left: 7px;
+  margin: 1px 0 2px 0;
+}
+
+.variation-line .num {
+  color: #626878;
+}
+
+.variation-line button {
+  font-size: 13px;
+  font-weight: 400;
+  color: #b4bac9;
+  padding: 2px 6px;
+}
+
+.variation-line .variation-line button {
+  font-size: 12px;
+  color: #8a90a2;
+}
+
+.movelist .num {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a90a2;
+  margin-right: 2px;
+}
+
+/* Import / Export (M5): a <details>, collapsed by default — an occasional
+   tool that must not compete with the analysis results for the sidebar. */
+.io-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #21242c;
+  border: 1px solid #32363f;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.io-summary {
+  cursor: pointer;
+  user-select: none;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #9aa0b0;
+}
+
+.io-summary::before {
+  content: '\25b8 ';
+}
+
+.io-section[open] .io-summary::before {
+  content: '\25be ';
+}
+
+.io-summary:hover {
+  color: #dcdee6;
+}
+
+.io-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.io-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9aa0b0;
+  margin-bottom: 4px;
+}
+
+.io-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.io-row input,
+.io-row textarea {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid #3a3e49;
+  border-radius: 6px;
+  background: #171920;
+  color: #dcdee6;
+  font: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.io-row input:focus,
+.io-row textarea:focus {
+  outline: 1px solid #5b8cff;
+}
+
+.io-row button {
+  padding: 6px 12px;
+  border: 1px solid #3a3e49;
+  border-radius: 6px;
+  background: #2e323e;
+  color: #dcdee6;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.io-row button:hover:not(:disabled) {
+  background: #3d4456;
+}
+
+.io-row button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.io-error {
+  color: #ff9d9d;
+  background: rgba(255, 80, 80, 0.1);
+  border: 1px solid rgba(255, 80, 80, 0.35);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+/* Analyze (M7): its own column LEFT of the board. At least as tall as the
+   board (which is min(88vmin, 640px)) and grows with its content. */
+.analyze-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 400px;
+  min-height: min(88vmin, 640px);
+  background: #21242c;
+  border: 1px solid #32363f;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.analyze-btn {
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid #4a6b2f;
+  border-radius: 6px;
+  background: #5a8f3c;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.analyze-btn:hover:not(:disabled) {
+  background: #6aa048;
+}
+
+.analyze-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.analyzing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #9aa0b0;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #3a3e49;
+  border-top-color: #5b8cff;
+  border-radius: 50%;
+  animation: analyze-spin 0.8s linear infinite;
+}
+
+@keyframes analyze-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.analysis-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 14px;
+  color: #dcdee6;
+}
+
+.result-row.muted {
+  color: #9aa0b0;
+}
+
+.result-row button {
+  padding: 4px 12px;
+  border: 1px solid #4a4f5c;
+  border-radius: 6px;
+  background: #2e323e;
+  color: #dcdee6;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.result-row button:hover:not(:disabled) {
+  background: #3d4456;
+}
+
+.result-row button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.source-note {
+  font-size: 13px;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.source-note.warning {
+  color: #ffd8a8;
+  background: rgba(255, 150, 50, 0.1);
+  border: 1px solid rgba(255, 150, 50, 0.4);
+}
+
+.source-note.info {
+  color: #9aa0b0;
+  background: rgba(120, 130, 150, 0.08);
+  border: 1px solid rgba(120, 130, 150, 0.25);
+}
+
+.explanation {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.explanation h3,
+.critline h3,
+.extra-section h3 {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #9aa0b0;
+  margin: 0;
+}
+
+/* Structured QUEEN text: one block of paragraphs; unstructured (mock /
+   plain) text falls back to pre-wrap raw text. */
+.explanation-box {
+  background: #171920;
+  border: 1px solid #262931;
+  border-radius: 6px;
+  padding: 8px 10px;
+  max-height: 45vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #c6cad6;
+}
+
+.explanation-p {
+  margin: 0;
+}
+
+.explanation-text {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Evaluation (parsed from the EVALUATION section; white-positive sign). */
+.eval-box {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 10px;
+  background: #171920;
+  border: 1px solid #262931;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #c6cad6;
+}
+
+.eval-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e6e8ef;
+}
+
+/* Eval pill: right-pushed and dimmed like the turn number; the explicit
+   +/- sign (not a color) carries the sign. Positive = white advantage. */
+.eval {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a90a2;
+  white-space: nowrap;
+}
+
+.eval-cell {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.eval-cell .eval {
+  width: 100%;
+  text-align: right;
+  overflow: hidden;
+  padding-top: 5px; /* sits on the same line as the move button */
+}
+
+/* Sections that have no dedicated UI yet (e.g. PROMISING_MOVES). */
+.extra-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.extra-body {
+  font-size: 13px;
+  color: #c6cad6;
+  background: #171920;
+  border: 1px solid #262931;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.critline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.critline-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.critline-head button {
+  padding: 3px 10px;
+  border: 1px solid #4a4f5c;
+  border-radius: 6px;
+  background: #2e323e;
+  color: #dcdee6;
+  cursor: pointer;
+}
+
+.critline-head button:hover {
+  background: #3d4456;
+}
+
+.step-ctrl {
+  justify-content: space-between;
+  font-size: 13px;
+  color: #9aa0b0;
+}
+
+.step-ctrl button {
+  padding: 2px 10px;
+}
+
+.critline-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.critline-steps button {
+  padding: 3px 7px;
+  border: 1px solid #2e323e;
+  border-radius: 4px;
+  background: #171920;
+  color: #dcdee6;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+}
+
+.critline-steps button:hover {
+  background: #2e323e;
+}
+
+.critline-steps button.active {
+  background: #3d4456;
+  border-color: #5b8cff;
+}
