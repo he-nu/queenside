@@ -105,7 +105,7 @@ concurrent analyze while one is running returns 429.
 ```bash
 # Backend (mock; the GPU tests are opt-in):
 .venv/bin/pytest backend -m "not gpu"
-ENGINE=queen .venv/bin/pytest backend -m gpu     # needs a free GPU, run with the coding model STOPPED
+ENGINE=queen .venv/bin/pytest backend -m gpu
 
 # Frontend:
 cd frontend && npm test
