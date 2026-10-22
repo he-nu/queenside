@@ -7,6 +7,8 @@ plays at Grandmaster level and explains its moves. Lichess-style board UI
 vLLM. A deterministic mock engine lets the whole app run and be tested without
 a GPU.
 
+![Example of an analysis with queenside](images/example_position.png)
+
 > **Not affiliated with or endorsed by the Queen authors, Princeton University,
 > or Lichess.** This project contains none of the Queen training or model code;
 > it downloads the released weights from Hugging Face. See
