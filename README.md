@@ -89,6 +89,10 @@ Then open `http://localhost:6006/`. Until the engine finishes loading,
 `/api/health` reports loading and `/api/analyze` returns 503; a second
 concurrent analyze while one is running returns 429.
 
+**GPU memory:** the default `QUEEN_GPU_UTIL=0.25` assumes a 48 GB card.
+On 24-32 GB cards use about `0.6`. Pre-Ampere GPUs (e.g. V100) are
+unsupported. See [docs/gpu.md](docs/gpu.md) for details and troubleshooting.
+
 ### Environment variables
 
 | Var | Default | Meaning |
